@@ -38,9 +38,9 @@ app.get('/data', async (req, res) => {
 });
 
 // Use the PORT environment variable or default to port 3001
-const PORT = 10001;
+const PORT = process.env.PORT || 10001;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`redis running on port ${PORT}`);
 });
 
 // Export the app for use in index.js

@@ -46,7 +46,7 @@ app.get('/array', async (req, res) => {
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`mongodb running on port ${PORT}`);
 });
 
 // Export the app for use in index.js
