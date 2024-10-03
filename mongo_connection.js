@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
@@ -44,7 +43,7 @@ app.get('/array', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT;
+const PORT = 10001;
 app.listen(PORT, () => {
   console.log(`mongodb running on port ${PORT}`);
 });
