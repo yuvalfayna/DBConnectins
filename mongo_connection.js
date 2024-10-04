@@ -48,5 +48,4 @@ app.listen(PORT, () => {
   console.log(`mongodb running on port ${PORT}`);
 });
 
-// Export the app for use in index.js
 export default app; // הוספת שורה זו
