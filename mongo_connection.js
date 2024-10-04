@@ -34,7 +34,7 @@ const Entity = mongoose.model('arrays', entitySchema);
 // Endpoint to fetch all entities
 app.get('/array', async (req, res) => {
   try {
-    const entities = await Entity.find(); 
+    const entities = await Entity.find().sort({ "runtime:" : -1 }); 
     res.json({ entities }); 
   } catch (error) {
     console.error('Error fetching entities:', error);
