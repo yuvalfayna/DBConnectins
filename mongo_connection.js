@@ -43,7 +43,7 @@ app.get('/array', async (req, res) => {
 });
 
 
-const PORT = 10001;
+const PORT = 27017;
 app.listen(PORT, () => {
   console.log(`mongodb running on port ${PORT}`);
 });
