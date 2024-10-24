@@ -42,10 +42,29 @@ app.get('/array', async (req, res) => {
   }
 });
 
+// Define the Mongoose schema and model
+const entitySchemaMap = new mongoose.Schema({
+  runtime: String,
+  array: String
+});
+const EntityMap = mongoose.model('maps', entitySchemaMap);
+
+// Endpoint to fetch all entities
+app.get('/map', async (req, res) => {
+  try {
+    const entities = await EntityMap.find().sort({ "runtime:" : -1 }); 
+    res.json({ entities }); 
+  } catch (error) {
+    console.error('Error fetching entities:', error);
+    res.status(500).json({ message: 'Error fetching entities', error });
+  }
+});
+
 
 const PORT = 27017;
 app.listen(PORT, () => {
   console.log(`mongodb running on port ${PORT}`);
 });
 
-export default app; // הוספת שורה זו
+
+export default app;
