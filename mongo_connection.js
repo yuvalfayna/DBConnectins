@@ -1,3 +1,4 @@
+// שירות האחראי על יצירת וניהול החיבור של צד הלקוח עם המונגו
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -12,7 +13,7 @@ app.use(express.json());
 const clientOptions = {
   serverApi: { version: '1', strict: true, deprecationErrors: true }
 };
-
+// יצירת חיבור עם המונגו
 async function run() {
   try {
     await mongoose.connect(process.env.MONGO_URI, clientOptions);
@@ -24,14 +25,14 @@ async function run() {
 
 run();
 
-// Define the Mongoose schema and model
+// הגדרת הסכמה ממנה נשאוב את המידע לתוך הנקודת קצה של דף הגרף
 const entitySchema = new mongoose.Schema({
   runtime: String,
   array: String
 });
 const Entity = mongoose.model('arrays', entitySchema);
 
-// Endpoint to fetch all entities
+// הגדרת נקודת קצה ששואבת את המידע מהמונגו ומנגישה אותו ללקוח בדף הגרף
 app.get('/array', async (req, res) => {
   try {
     const entities = await Entity.find().sort({ "runtime:" : -1 }); 
@@ -42,14 +43,14 @@ app.get('/array', async (req, res) => {
   }
 });
 
-// Define the Mongoose schema and model
+// הגדרת הסכמה ממנה נשאוב את המידע לתוך דף המפה
 const entitySchemaMap = new mongoose.Schema({
   runtime: String,
   array: String
 });
 const EntityMap = mongoose.model('maps', entitySchemaMap);
 
-// Endpoint to fetch all entities
+// נקודת קצה ששואבת את המידע מהמונגו ומנגישה אותו ללקוח בדף המפה
 app.get('/map', async (req, res) => {
   try {
     const entities = await EntityMap.find().sort({ "runtime:" : -1 }); 
